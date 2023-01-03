@@ -1,0 +1,70 @@
+﻿
+@model IEnumerable<TestExcelCore.Models.EmployeeDetails>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+
+    td, tr, th {
+        border: 1px solid;
+        padding: 10px
+    }
+
+    table {
+        width: 50%
+    }
+
+    .btnMargin {
+        margin-left: 4%;
+    }
+
+    .padding-top {
+        padding-bottom: 3px;
+    }
+</style>
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-12" style="padding-top:20px">
+        <div class="col-4">
+        </div>
+        <div class="col-4">
+            <input type="file" name="file" required />
+
+        </div>
+        <div class="col-4" style="padding-top:20px">
+
+            <input type="submit" value="Upload" />
+        </div>
+
+    </div>
+
+    <div class="col-lg-12" style="margin-top:30px">
+        <table>
+            <thead style="border:1px solid"><tr><th>Id</th><th>Name</th><th>Email</th><th>Mobile</th><th>Specialization</th></tr></thead>
+            <tbody style="border:1px solid">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.Mobile</td>
+                            <td>@item.Specialization</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+
+}
